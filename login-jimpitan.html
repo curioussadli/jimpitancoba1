@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Jimpitan</title>
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/login-jimpitan.css">
+
+  <link rel="manifest" href="manifest.json">
+
+  <meta name="theme-color" content="#ffc107">
+
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <link rel="apple-touch-icon" href="img/icon-192.png">
+
+  <link rel="icon" href="img/favicon.ico">
+
+</head>
+
+<body>
+
+  <div class="container hidden" id="loginForm">
+
+    <!-- TEXT -->
+    <div class="hero">
+      <h1>Selamat Bertugas</h1>
+      <p>
+        Mari lestarikan budaya jimpitan untuk kesejahteraan bersama.<br><br>
+        Satu koin anda, sejuta manfaat untuk warga.
+      </p>
+    </div>
+
+    <!-- FORM -->
+    <div class="form">
+
+      <!-- DROPDOWN GRUP -->
+      <div class="dropdown" id="grupDropdown">
+        <div class="dropdown-selected">Grup berapa...</div>
+        <div class="dropdown-list"></div>
+      </div>
+
+      <!-- DROPDOWN NAMA -->
+      <div class="dropdown" id="namaDropdown">
+        <div class="dropdown-selected">Petugasnya siapa...</div>
+        <div class="dropdown-list"></div>
+      </div>
+
+      <!-- BUTTON -->
+      <button id="btnMasuk">Masuk</button>
+
+      <!-- STATUS -->
+      <div id="status"></div>
+
+    </div>
+
+  </div>
+
+  <script type="module" src="js/login-jimpitan.js"></script>
+
+
+  <script>
+
+if("serviceWorker" in navigator){
+
+    window.addEventListener("load",async()=>{
+
+        const reg=await navigator.serviceWorker.register("./sw.js");
+
+        reg.update();
+
+    });
+
+}
+
+</script>
+
+
+
+</body>
+</html>

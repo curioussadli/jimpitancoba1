@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catatan - Login</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/login.css">
+
+  <link rel="manifest" href="manifest.json">
+
+  <meta name="theme-color" content="#ffc107">
+
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <link rel="apple-touch-icon" href="img/icon-192.png">
+
+  <link rel="icon" href="img/favicon.ico">
+
+
+
+</head>
+
+<body>
+
+<div class="phone-frame">
+
+  <main class="login-page">
+
+    <div class="logo-area">
+      <img src="assets/icons/coins.svg" class="logo-icon">
+      <h1>Catatan</h1>
+      <p>Sistem pencatatan digital</p>
+    </div>
+
+    <div class="action-area">
+      <button id="btnLanjutkan" class="btn-login">Lanjutkan</button>
+    </div>
+
+  </main>
+
+</div>
+
+<!-- LOGIN LOGIC -->
+<script type="module" src="js/login.js"></script>
+
+<!-- OPTIONAL: auto skip kalau sudah login -->
+<script>
+  // kalau sudah login device → lanjut ke login petugas
+  if (localStorage.getItem("device_id")) {
+    window.location.href = "login-jimpitan.html";
+  }
+</script>
+
+<script>
+
+if("serviceWorker" in navigator){
+
+    window.addEventListener("load",async()=>{
+
+        const reg=await navigator.serviceWorker.register("./sw.js");
+
+        reg.update();
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
