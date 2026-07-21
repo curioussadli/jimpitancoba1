@@ -1,0 +1,175 @@
+
+/* ================= PAGE ================= */
+.laporan-page {
+  width: min(100%, 390px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 60px 16px 90px; /* atas untuk topbar, bawah untuk bottom nav */
+  background: var(--surface);
+  box-sizing: border-box;
+}
+
+/* ================= TOPBAR ================= */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(100%, 390px);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+}
+
+.brand {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* icon button sudah dari main.css, tapi kita pastikan aman */
+.icon-button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ================= CONTENT ================= */
+#content {
+  margin-top: 10px;
+}
+
+/* ================= PROFILE BOX ================= */
+.profile-box {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.profile-box h3 {
+  margin: 0 0 14px;
+  font-size: 16px;
+}
+
+/* item */
+.profile-item {
+  margin-bottom: 12px;
+}
+
+.profile-item label {
+  font-size: 12px;
+  color: #888;
+}
+
+.profile-item p {
+  margin: 4px 0;
+  font-size: 14px;
+  word-break: break-all;
+  color: #333;
+}
+
+.profile-item input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+/* ================= BUTTON ================= */
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+}
+
+.btn-logout {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: #e53935;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ================= BOTTOM NAV SAFETY ================= */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(100%, 390px);
+
+  display: flex;
+  justify-content: space-around;
+
+  padding: 10px 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  z-index: 100;
+}
+
+/* nav item */
+.nav-item {
+  text-decoration: none;
+  color: #888;
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-item.is-active {
+  color: var(--accent);
+}
+
+.nav-icon {
+  width: 22px;
+  height: 22px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 420px) {
+
+  .laporan-page {
+    padding: 60px 14px 90px;
+  }
+
+  .profile-box {
+    padding: 14px;
+  }
+
+  .brand {
+    font-size: 16px;
+  }
+
+}
