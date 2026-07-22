@@ -9,9 +9,10 @@
 
   <link rel="stylesheet" href="css/login.css">
 
+
   <link rel="manifest" href="manifest.json">
 
-  <meta name="theme-color" content="#ffc107">
+  <meta name="theme-color" content="#111111">
 
   <meta name="mobile-web-app-capable" content="yes">
 
@@ -21,8 +22,7 @@
 
   <link rel="apple-touch-icon" href="img/icon-192.png">
 
-  <link rel="icon" href="img/favicon.ico">
-
+  <link rel="icon" href="img/icon-192.png">
 
 
 </head>
@@ -58,21 +58,8 @@
   }
 </script>
 
-<script>
-
-if("serviceWorker" in navigator){
-
-    window.addEventListener("load",async()=>{
-
-        const reg=await navigator.serviceWorker.register("./sw.js");
-
-        reg.update();
-
-    });
-
-}
-
-</script>
+<!-- REGISTER SERVICE WORKER -->
+<script src="js/register-sw.js"></script>
 
 </body>
 </html>
