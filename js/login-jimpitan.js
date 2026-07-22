@@ -7,6 +7,9 @@ if (!localStorage.getItem("device_id")) {
 
 const device_id = localStorage.getItem("device_id");
 
+// ================= DEVELOPMENT =================
+const DEV_MODE = true;
+
 // ================= ELEMENT =================
 const loginForm = document.getElementById("loginForm");
 const btnMasuk = document.getElementById("btnMasuk");
@@ -138,31 +141,40 @@ function startCountdown() {
 
   console.log("isJamBuka =", isJamBuka());
 
-  if (!isJamBuka()) {
-    showLock("Belum Waktunya", "Audit dibuka jam 06:00 - 03:00");
-    startCountdown();
-    return;
-  }
-
   const { data } = await supabase
     .from("session_jimpitan")
     .select("*")
     .eq("tanggal", getTanggal())
     .maybeSingle();
 
-  if (data?.status === "closed") {
-    showLock("Audit Selesai", "Data hari ini sudah dikunci");
-    return;
+  // ================= PRODUCTION MODE =================
+  if (!DEV_MODE) {
+
+    // Belum jam buka
+    if (!isJamBuka()) {
+      showLock("Belum Waktunya", "Audit dibuka jam 06:00 - 03:00");
+      startCountdown();
+      return;
+    }
+
+    // Audit sudah ditutup
+    if (data?.status === "closed") {
+      showLock("Audit Selesai", "Data hari ini sudah dikunci");
+      return;
+    }
+
+    // Sedang dipakai device lain
+    if (data && data.device_id !== device_id) {
+      showLock(
+        "Sedang Audit",
+        `Grup ${data.grup} - ${data.petugas}`
+      );
+      return;
+    }
+
   }
 
-  if (data && data.device_id !== device_id) {
-    showLock(
-      "Sedang Audit",
-      `Grup ${data.grup} - ${data.petugas}`
-    );
-    return;
-  }
-
+  // Tampilkan form login
   loginForm.classList.remove("hidden");
 
 })();
@@ -266,7 +278,7 @@ btnMasuk.onclick = async () => {
     localStorage.setItem("grup", grup);
     localStorage.setItem("petugas", nama);
 
-    window.location.href = "catatan.html";
+    location.replace("catatan.html");
 
   } catch (err) {
     status.textContent = "❌ Terjadi error";
