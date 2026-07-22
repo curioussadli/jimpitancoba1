@@ -1,23 +1,21 @@
 if ("serviceWorker" in navigator) {
 
-    window.addEventListener("load", async () => {
+  window.addEventListener("load", async () => {
 
-        try{
+    try {
 
-            const reg=await navigator.serviceWorker.register("./sw.js");
+      const reg = await navigator.serviceWorker.register("./sw.js");
 
-            reg.update();
+      reg.update();
 
-            console.log("Service Worker aktif");
+      console.log("✅ Service Worker aktif");
 
-        }
+    } catch (err) {
 
-        catch(err){
+      console.error("❌ Service Worker gagal:", err);
 
-            console.log(err);
+    }
 
-        }
-
-    });
+  });
 
 }
