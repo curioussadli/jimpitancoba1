@@ -7,6 +7,11 @@ if (!localStorage.getItem("device_id")) {
 
 const device_id = localStorage.getItem("device_id");
 
+// ================= DEVELOPMENT =================
+const DEV_MODE = true;
+
+console.log("DEV MODE =", DEV_MODE);
+console.log("login-jimpitan.js terbaru berhasil dimuat");
 
 // ================= ELEMENT =================
 const loginForm = document.getElementById("loginForm");
@@ -137,7 +142,44 @@ function startCountdown() {
 // ================= SYSTEM CHECK =================
 (async () => {
 
-  // Development: langsung tampilkan form login
+  /*
+  console.log("isJamBuka =", isJamBuka());
+
+  const { data } = await supabase
+    .from("session_jimpitan")
+    .select("*")
+    .eq("tanggal", getTanggal())
+    .maybeSingle();
+
+  // ================= PRODUCTION MODE =================
+  if (!DEV_MODE) {
+
+    // Belum jam buka
+    if (!isJamBuka()) {
+      showLock("Belum Waktunya", "Audit dibuka jam 06:00 - 03:00");
+      startCountdown();
+      return;
+    }
+
+    // Audit sudah ditutup
+    if (data?.status === "closed") {
+      showLock("Audit Selesai", "Data hari ini sudah dikunci");
+      return;
+    }
+
+    // Sedang dipakai device lain
+    if (data && data.device_id !== device_id) {
+      showLock(
+        "Sedang Audit",
+        `Grup ${data.grup} - ${data.petugas}`
+      );
+      return;
+    }
+
+  }
+  */
+
+  // Langsung tampilkan form login
   loginForm.classList.remove("hidden");
 
 })();
