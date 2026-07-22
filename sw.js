@@ -1,44 +1,44 @@
 importScripts("./version.js");
 
-const CACHE_NAME = "cache-" + APP_VERSION;
+const CACHE = "SiagaRT9-" + APP_VERSION;
 
-// Hanya file inti
-const CORE_FILES = [
-
-    "./",
-    "./index.html",
-    "./offline.html",
-    "./manifest.json"
-
+const FILES = [
+  "./",
+  "./index.html",
+  "./offline.html",
+  "./manifest.json"
 ];
 
-// ================= INSTALL =================
 self.addEventListener("install", event => {
 
     self.skipWaiting();
 
     event.waitUntil(
 
-        caches.open(CACHE_NAME)
-        .then(cache => cache.addAll(CORE_FILES))
+        caches.open(CACHE)
+
+        .then(cache => cache.addAll(FILES))
 
     );
 
 });
 
-// ================= ACTIVATE =================
 self.addEventListener("activate", event => {
 
     event.waitUntil(
 
-        caches.keys().then(keys =>
+        caches.keys()
+
+        .then(keys =>
 
             Promise.all(
 
                 keys.map(key => {
 
-                    if (key !== CACHE_NAME) {
+                    if (key !== CACHE) {
+
                         return caches.delete(key);
+
                     }
 
                 })
@@ -53,47 +53,35 @@ self.addEventListener("activate", event => {
 
 });
 
-// ================= FETCH =================
 self.addEventListener("fetch", event => {
 
-    // hanya GET
-    if (event.request.method !== "GET") return;
+    if(event.request.method!=="GET") return;
 
     event.respondWith(
 
         caches.match(event.request)
 
-        .then(cacheResponse => {
+        .then(cache=>{
 
-            // jika sudah ada cache
-            if (cacheResponse) {
-                return cacheResponse;
-            }
+            return cache ||
 
-            // ambil dari internet
-            return fetch(event.request)
+            fetch(event.request)
 
-            .then(networkResponse => {
+            .then(network=>{
 
-                // simpan otomatis ke cache
-                const clone = networkResponse.clone();
+                const clone=network.clone();
 
-                caches.open(CACHE_NAME)
+                caches.open(CACHE)
 
-                .then(cache => {
+                .then(c=>c.put(event.request,clone));
 
-                    cache.put(event.request, clone);
-
-                });
-
-                return networkResponse;
+                return network;
 
             })
 
-            .catch(() => {
+            .catch(()=>{
 
-                // jika halaman HTML gagal dimuat
-                if (event.request.mode === "navigate") {
+                if(event.request.mode==="navigate"){
 
                     return caches.match("./offline.html");
 
