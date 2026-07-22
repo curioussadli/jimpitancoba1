@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Catatan</title>
 
   <!-- FONT -->
@@ -12,31 +14,28 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/catatan.css">
 
+  <!-- PWA -->
   <link rel="manifest" href="manifest.json">
 
-  <meta name="theme-color" content="#ffc107">
+  <meta name="theme-color" content="#111111">
 
   <meta name="mobile-web-app-capable" content="yes">
-
   <meta name="apple-mobile-web-app-capable" content="yes">
-
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
   <link rel="apple-touch-icon" href="img/icon-192.png">
-
-  <link rel="icon" href="img/favicon.ico">
-
+  <link rel="icon" href="img/icon-192.png">
 
 </head>
 
 <body>
 
-    <!-- 🔒 LOCK SCREEN -->
+<!-- 🔒 LOCK SCREEN -->
 <div id="lockScreen" class="lock-screen hidden">
   <div class="lock-content">
-  
+
     <div id="lockIcon" class="lock-icon">
-    <img id="lockIconImg" src="assets/icons/lock-keyhole.svg">
+      <img id="lockIconImg" src="assets/icons/lock-keyhole.svg">
     </div>
 
     <div id="lockTitle" class="lock-title">Terkunci</div>
@@ -49,181 +48,173 @@
       <img src="assets/icons/notepad-text.svg">
       <span>Lihat Laporan</span>
     </a>
-  </div>
-</div>
-
-  <!-- TOAST -->
-  <div id="toast" class="toast"></div>
-
-  <main class="input-page">
-
-    <!-- ================= TOPBAR ================= -->
-<header class="topbar">
-  <h1 class="brand">Jimpitan</h1>
-
-  <!-- RIGHT GROUP -->
-  <div class="topbar-right">
-
-    <!-- FILTER BADGE -->
-    <button id="filterBadge" class="filter-badge" type="button">
-      <span id="filterText">Filter</span>
-      <img id="filterIcon" class="filter-icon" src="assets/icons/circle-alert.svg" alt="filter">
-    </button>
-
-    <!-- SCAN -->
-    <button id="btnScan" class="icon-button" type="button" aria-label="Scan">
-      <img src="assets/icons/scan-line.svg" alt="scan">
-    </button>
-
-    <!-- MENU -->
-    <button id="btnMenu" class="icon-button" type="button" aria-label="Menu">
-      <img src="assets/icons/list-filter.svg" width="26" alt="menu">
-    </button>
-
-  </div>
-</header>
-
-    <!-- ================= SIDEBAR ================= -->
-    <div id="sidebar" class="sidebar">
-      <div class="sidebar-content">
-
-        <h3 class="sidebar-title">Filter Status</h3>
-
-        <div class="sidebar-item active" data-filter="all">
-          <img src="assets/icons/circle-check-big.svg" alt="">
-          <span>Semua warga</span>
-        </div>
-
-        <div class="sidebar-item" data-filter="alert">
-          <img src="assets/icons/circle-alert.svg" alt="">
-          <span>Belum diinput</span>
-        </div>
-
-        <div class="sidebar-item" data-filter="done">
-          <img src="assets/icons/circle-check.svg" alt="">
-          <span>Input tambah</span>
-        </div>
-
-        <div class="sidebar-item" data-filter="zero">
-          <img src="assets/icons/circle-x.svg" alt="">
-          <span>Input kosong</span>
-        </div>
-
-        <div class="sidebar-item" data-filter="revisi">
-          <img src="assets/icons/badge-check.svg" alt="">
-          <span>Revisi tambah</span>
-        </div>
-
-        <div class="sidebar-item" data-filter="revisi-zero">
-          <img src="assets/icons/badge-x.svg" alt="">
-          <span>Revisi kosong</span>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- overlay -->
-    <div id="overlay" class="overlay"></div>
-
-    <!-- ================= SEARCH ================= -->
-<div class="search-form">
-  <div class="search-box">
-    
-    <img src="assets/icons/search.svg" class="icon-left">
-
-    <input id="searchInput" type="text" placeholder="Cari nama warga...">
-
-    <img src="assets/icons/x.svg" class="icon-right" id="clearSearch">
 
   </div>
 </div>
 
-    <!-- ================= LIST ================= -->
-    <div id="listWarga"></div>
+<!-- TOAST -->
+<div id="toast" class="toast"></div>
 
+<main class="input-page">
 
-    <!-- ================= NAV ================= -->
-    <nav class="bottom-nav">
+  <!-- ================= TOPBAR ================= -->
+  <header class="topbar">
 
-      <a href="dashboard.html" class="nav-item">
-        <img src="assets/icons/coins.svg" class="nav-icon" alt="">
-        <span class="nav-label">Dashboard</span>
-      </a>
+    <h1 class="brand">Jimpitan</h1>
 
-      <a href="catatan.html" class="nav-item is-active">
-        <img src="assets/icons/coins.svg" class="nav-icon" alt="">
-        <span class="nav-label">Jimpitan</span>
-      </a>
+    <div class="topbar-right">
 
-      <a href="#" id="btnRiwayat" class="nav-item">
-        <img src="assets/icons/wallet.svg" class="nav-icon" alt="">
-        <span class="nav-label">Riwayat</span>
-      </a>
+      <button id="filterBadge" class="filter-badge" type="button">
+        <span id="filterText">Filter</span>
+        <img id="filterIcon" class="filter-icon" src="assets/icons/circle-alert.svg" alt="filter">
+      </button>
 
-      <a href="absensi.html" class="nav-item">
-        <img src="assets/icons/newspaper.svg" class="nav-icon" alt="">
-        <span class="nav-label">Absensi</span>
-      </a>
+      <button id="btnScan" class="icon-button" type="button" aria-label="Scan">
+        <img src="assets/icons/scan-line.svg" alt="scan">
+      </button>
 
-      <a href="laporan.html" class="nav-item">
-        <img src="assets/icons/notepad-text.svg" class="nav-icon" alt="">
-        <span class="nav-label">Laporan</span>
-      </a>
+      <button id="btnMenu" class="icon-button" type="button" aria-label="Menu">
+        <img src="assets/icons/list-filter.svg" width="26" alt="menu">
+      </button>
 
-    </nav>
-
-
-    <!-- ================= DETAIL PAGE (WHATSAPP STYLE) ================= -->
-    <div id="detailPage" class="detail-page">
-
-      <div class="detail-page-inner">
-
-        <div class="detail-header"></div>
-
-        <div class="detail-body">
-
-          <div id="detailId" class="detail-id-big">ID</div>
-
-          <div class="detail-nama-big" id="detailNamaBig">Nama</div>
-
-          <div id="detailValue" class="detail-value">0</div>
-
-          <div class="detail-note-title">Hari ini</div>
-          <div class="detail-note-desc">Jika direvisi, nilai terakhir diterapkan</div>
-
-          <div class="counter">
-            <button id="minus">-</button>
-            <button id="plus">+</button>
-          </div>
-
-          <button id="saveBtn" class="save">Simpan</button>
-
-        </div>
-
-      </div>
     </div>
 
-  </main>
+  </header>
 
-  <!-- ================= SCRIPT ================= -->
-  <script type="module" src="js/catatan.js"></script>
+  <!-- ================= SIDEBAR ================= -->
+  <div id="sidebar" class="sidebar">
 
+    <div class="sidebar-content">
 
-  <script>
+      <h3 class="sidebar-title">Filter Status</h3>
 
-if("serviceWorker" in navigator){
+      <div class="sidebar-item active" data-filter="all">
+        <img src="assets/icons/circle-check-big.svg">
+        <span>Semua warga</span>
+      </div>
 
-    window.addEventListener("load",async()=>{
+      <div class="sidebar-item" data-filter="alert">
+        <img src="assets/icons/circle-alert.svg">
+        <span>Belum diinput</span>
+      </div>
 
-        const reg=await navigator.serviceWorker.register("./sw.js");
+      <div class="sidebar-item" data-filter="done">
+        <img src="assets/icons/circle-check.svg">
+        <span>Input tambah</span>
+      </div>
 
-        reg.update();
+      <div class="sidebar-item" data-filter="zero">
+        <img src="assets/icons/circle-x.svg">
+        <span>Input kosong</span>
+      </div>
 
-    });
+      <div class="sidebar-item" data-filter="revisi">
+        <img src="assets/icons/badge-check.svg">
+        <span>Revisi tambah</span>
+      </div>
 
-}
+      <div class="sidebar-item" data-filter="revisi-zero">
+        <img src="assets/icons/badge-x.svg">
+        <span>Revisi kosong</span>
+      </div>
 
-</script>
+    </div>
+
+  </div>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay"></div>
+
+  <!-- ================= SEARCH ================= -->
+  <div class="search-form">
+
+    <div class="search-box">
+
+      <img src="assets/icons/search.svg" class="icon-left">
+
+      <input id="searchInput" type="text" placeholder="Cari nama warga...">
+
+      <img src="assets/icons/x.svg" class="icon-right" id="clearSearch">
+
+    </div>
+
+  </div>
+
+  <!-- ================= LIST ================= -->
+  <div id="listWarga"></div>
+
+  <!-- ================= NAV ================= -->
+  <nav class="bottom-nav">
+
+    <a href="dashboard.html" class="nav-item">
+      <img src="assets/icons/coins.svg">
+      <span>Dashboard</span>
+    </a>
+
+    <a href="catatan.html" class="nav-item is-active">
+      <img src="assets/icons/coins.svg">
+      <span>Jimpitan</span>
+    </a>
+
+    <a href="#" id="btnRiwayat" class="nav-item">
+      <img src="assets/icons/wallet.svg">
+      <span>Riwayat</span>
+    </a>
+
+    <a href="absensi.html" class="nav-item">
+      <img src="assets/icons/newspaper.svg">
+      <span>Absensi</span>
+    </a>
+
+    <a href="laporan.html" class="nav-item">
+      <img src="assets/icons/notepad-text.svg">
+      <span>Laporan</span>
+    </a>
+
+  </nav>
+
+  <!-- ================= DETAIL ================= -->
+  <div id="detailPage" class="detail-page">
+
+    <div class="detail-page-inner">
+
+      <div class="detail-header"></div>
+
+      <div class="detail-body">
+
+        <div id="detailId" class="detail-id-big">ID</div>
+
+        <div id="detailNamaBig" class="detail-nama-big">Nama</div>
+
+        <div id="detailValue" class="detail-value">0</div>
+
+        <div class="detail-note-title">Hari ini</div>
+        <div class="detail-note-desc">
+          Jika direvisi, nilai terakhir diterapkan
+        </div>
+
+        <div class="counter">
+          <button id="minus">-</button>
+          <button id="plus">+</button>
+        </div>
+
+        <button id="saveBtn" class="save">
+          Simpan
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+<!-- SCRIPT -->
+<script type="module" src="js/catatan.js"></script>
+
+<!-- REGISTER SERVICE WORKER -->
+<script src="js/register-sw.js"></script>
 
 </body>
 </html>
