@@ -10,6 +10,9 @@ const device_id = localStorage.getItem("device_id");
 // ================= DEVELOPMENT =================
 const DEV_MODE = true;
 
+console.log("DEV MODE =", DEV_MODE);
+console.log("login-jimpitan.js terbaru berhasil dimuat");
+
 // ================= ELEMENT =================
 const loginForm = document.getElementById("loginForm");
 const btnMasuk = document.getElementById("btnMasuk");
