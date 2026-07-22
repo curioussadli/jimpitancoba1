@@ -1,34 +1,30 @@
 {
-  "name": "Siaga RT9",
-  "short_name": "NamaApp",
-  "description": "Aplikasi Operasional",
-  "start_url": "./index.html",
+  "name": "Siaga RT 9",
+  "short_name": "SiagaRT9",
+  "description": "Sistem Operasional RT 9",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#f5f5f5",
-  "theme_color": "#ffc107",
+  "background_color": "#ffffff",
+  "theme_color": "#111111",
 
   "icons": [
-
     {
-      "src":"img/icon-192.png",
-      "sizes":"192x192",
-      "type":"image/png"
+      "src": "img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
     },
-
     {
-      "src":"img/icon-512.png",
-      "sizes":"512x512",
-      "type":"image/png"
+      "src": "img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
     },
-
     {
-      "src":"img/maskable-512.png",
-      "sizes":"512x512",
-      "type":"image/png",
-      "purpose":"maskable any"
+      "src": "img/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
     }
-
   ]
 }
