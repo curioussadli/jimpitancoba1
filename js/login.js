@@ -17,21 +17,20 @@ document.getElementById("btnLanjutkan").onclick = async () => {
 
   const device_id = getDeviceId();
 
-  // simpan ke local
   localStorage.setItem("device_id", device_id);
 
-  // simpan ke Supabase (optional log)
-  const { error } = await supabase.from("device_session").insert([
-    {
-      device_id,
-      created_at: new Date().toISOString()
-    }
-  ]);
+  try {
+    await supabase
+      .from("device_session")
+      .upsert({
+        device_id,
+        created_at: new Date().toISOString()
+      });
 
-  if (error) {
-    console.error("Gagal log device:", error);
+  } catch (err) {
+    console.error(err);
   }
 
-  // 🔥 LANJUT KE LOGIN PETUGAS
-  window.location.href = "login-jimpitan.html";
+  location.replace("login-jimpitan.html");
+
 };
